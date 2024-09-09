@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Valores ao Vetor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        input {
+            padding: 10px;
+            margin-right: 10px;
+            border: 2px solid #6a0dad;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #6a0dad;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #5c0caa;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        h1, h2 {
+            color: #6a0dad;
+        }
+    </style>
+</head>
+<body>
+    <h1>Adicionar Valores ao Vetor</h1>
+
+    <label for="valor">Digite um valor:</label>
+    <input type="number" id="valor" placeholder="Digite um número" />
+    <button onclick="adicionarValor()">Adicionar</button>
+    <button onclick="limparVetor()">Limpar</button>
+
+    <h2>Valores Inseridos</h2>
+    <pre id="valoresVetor">[]</pre>
+
+    <h2>Média dos Valores</h2>
+    <pre id="mediaValores">0</pre>
+
+    <script>
+        let vetor = [];
+
+        function adicionarValor() {
+            // Pega o valor do input
+            const valorInput = document.getElementById('valor');
+            const valor = parseFloat(valorInput.value);
+
+            // Se o valor for um número válido, adiciona ao vetor
+            if (!isNaN(valor)) {
+                vetor.push(valor);
+                atualizarDisplay();  // Atualiza os elementos de exibição
+            }
+
+            // Limpa o input e foca novamente para o próximo valor
+            valorInput.value = '';
+            valorInput.focus();
+        }
+
+        function limparVetor() {
+            // Limpa o vetor
+            vetor = [];
+
+            // Atualiza os elementos de exibição
+            atualizarDisplay();
+        }
+
+        function atualizarDisplay() {
+            // Atualiza o elemento que exibe os valores do vetor
+            document.getElementById('valoresVetor').textContent = JSON.stringify(vetor);
+            
+            // Atualiza o elemento que exibe a média dos valores
+            document.getElementById('mediaValores').textContent = calcularMedia(vetor).toFixed(2);
+        }
+
+        function calcularMedia(arr) {
+            // Se o vetor estiver vazio, retorna 0
+            if (arr.length === 0) return 0;
+            
+            // Soma todos os elementos do vetor
+            const soma = arr.reduce((acc, curr) => acc + curr, 0);
+            
+            // Calcula a média (soma / quantidade de elementos)
+            const media = soma / arr.length;
+
+            return media;
+        }
+    </script>
+</body>
+</html>
