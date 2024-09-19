@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Forca e Separar Letras</title>
+    <style>
+        .letra {
+            font-size: 40px;
+            border: 1px solid black;
+            display: inline-block;
+            margin: 5px;
+            padding: 10px;
+        }
+        #boneco {
+            margin-top: 20px;
+        }
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Separar Letras</h1>
+    <input type="text" id="palavra" placeholder="Digite uma palavra">
+    <button id="separar">SEPARAR</button>
+    <div id="resultado"></div>
+
+    <h1>Jogo da Forca</h1>
+    <button id="iniciar">Iniciar Jogo</button>
+    <div id="forcaResultado"></div>
+    <div id="letras"></div>
+    <div id="boneco"></div>
+
+    <script>
+        // Parte 1: Separar letras
+        document.getElementById('separar').addEventListener('click', function() {
+            const palavra = document.getElementById('palavra').value;
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = ''; // Limpa o resultado anterior
+            
+            for (let letra of palavra) {
+                const div = document.createElement('div');
+                div.className = 'letra';
+                div.textContent = letra;
+                resultadoDiv.appendChild(div);
+            }
+        });
+
+        // Parte 2: Jogo da Forca
+        const palavras = [
+            "abacaxi", "anel", "amigo", "ave", "abacate",
+            "bola", "bala", "banho", "bau", "banco",
+            "casa", "cachorro", "carro", "cafe", "cama",
+            "dado", "dedo", "doce", "dia", "dente",
+            "elefante", "estrela", "escola", "elo", "escada",
+            "faca", "festa", "fogo", "foca", "fada",
+            "gato", "galo", "gelo", "goma", "ganso",
+            "helicoptero", "hipopotamo", "hotel", "harpa", "horta",
+            "ilha", "iglu", "iris", "indio", "ima",
+            "janela", "jarra", "jogo", "jumento", "joaninha",
+            "ketchup", "kiwi", "karate", "koala", "kamikaze",
+            "leao", "lago", "lua", "lima", "livro",
+            "maca", "mala", "muro", "mapa", "mesa",
+            "neve", "ninho", "navio", "nuvem", "nota",
+            "olho", "ovo", "onda", "ouro", "orelha",
+            "pato", "peixe", "pipoca", "pato", "perna",
+            "quilo", "quadro", "queijo", "quina", "queda",
+            "raio", "rosa", "rede", "rato", "roupa",
+            "sol", "sapo", "seda", "sabao", "sapato",
+            "tigre", "touro", "teto", "tela", "tesoura",
+            "uva", "urso", "urna", "uniao", "umidade",
+            "vaca", "verao", "vento", "vela", "vidro",
+            "webcam", "whisky", "waffle", "walker", "wifi",
+            "xale", "xadrez", "xerox", "xarope", "xampu",
+            "yoga", "yakisoba", "yogurte", "yeti", "yuppie",
+            "zebra", "zoologico", "zumbi", "zero", "zagueiro"
+        ];
+
+        let palavraSecreta;
+        let letrasAdivinhadas = [];
+        let tentativas = 6;
+
+        document.getElementById('iniciar').addEventListener('click', iniciarJogo);
+
+        function iniciarJogo() {
+            palavraSecreta = palavras[Math.floor(Math.random() * palavras.length)];
+            letrasAdivinhadas = [];
+            tentativas = 6;
+            document.getElementById('forcaResultado').innerHTML = '_ '.repeat(palavraSecreta.length);
+            document.getElementById('letras').innerHTML = '';
+            document.getElementById('boneco').innerHTML = '';
+            criarBotoes();
+        }
+
+        function criarBotoes() {
+            const letrasDiv = document.getElementById('letras');
+            letrasDiv.innerHTML = '';
+            for (let i = 0; i < 26; i++) {
+                const letra = String.fromCharCode(65 + i);
+                const botao = document.createElement('button');
+                botao.textContent = letra;
+                botao.addEventListener('click', () => adivinhar(letra.toLowerCase()));
+                letrasDiv.appendChild(botao);
+            }
+        }
+
+        function adivinhar(letra) {
+            if (!letrasAdivinhadas.includes(letra)) {
+                letrasAdivinhadas.push(letra);
+                if (!palavraSecreta.includes(letra)) {
+                    tentativas--;
+                    desenharBoneco();
+                }
+                mostrarResultado();
+            }
+        }
+
+        function mostrarResultado() {
+            const resultadoDiv = document.getElementById('forcaResultado');
+            resultadoDiv.innerHTML = '';
+            for (let letra of palavraSecreta) {
+                resultadoDiv.innerHTML += (letrasAdivinhadas.includes(letra) ? letra + ' ' : '_ ');
+            }
+            if (!resultadoDiv.innerHTML.includes('_')) {
+                alert('Você ganhou! A palavra era: ' + palavraSecreta);
+            } else if (tentativas <= 0) {
+                alert('Você perdeu! A palavra era: ' + palavraSecreta);
+            }
+        }
+
+        function desenharBoneco() {
+            const bonecoDiv = document.getElementById('boneco');
+            bonecoDiv.innerHTML = 'Tentativas restantes: ' + tentativas;
+            // Aqui você pode adicionar imagens do boneco conforme as tentativas
+        }
+    </script>
+</body>
+</html>
