@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo Switch/Default</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label, button {
+            font-size: 18px;
+        }
+        input, button {
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 2px solid #6a0dad;
+        }
+        button {
+            background-color: #6a0dad;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #27004e;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Escolha uma fruta</h1>
+
+    <label for="fruta">Digite o nome da fruta:</label>
+    <input type="text" id="fruta" placeholder="Ex: maçã, banana, laranja" />
+    <button onclick="verificarFruta()">Verificar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function verificarFruta() {
+            const fruta = document.getElementById('fruta').value.toLowerCase(); // Pega o valor digitado e converte para minúsculas
+            let mensagem;
+
+            switch (fruta) {
+                case 'banana':
+                    mensagem = 'Você escolheu banana.';
+                    break;
+                case 'laranja':
+                    mensagem = 'Você escolheu laranja.';
+                    break;
+                case 'maçã':
+                    mensagem = 'Você escolheu maçã.';
+                    break;
+                default:
+                    mensagem = 'Fruta não encontrada.';
+            }
+
+            document.getElementById('resultado').textContent = mensagem; // Exibe a mensagem no div
+        }
+    </script>
+</body>
+</html>
