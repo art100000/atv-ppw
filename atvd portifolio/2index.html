@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Art</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(180deg, #2a034b 0%, #320061 50%, #2a034b 100%);
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: #ff00ff;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            font-size: 5rem;
+            letter-spacing: 1rem;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            position: relative;
+        }
+
+        .neon-bar {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to right, #ff00ff, #ff66ff, #ff00ff);
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="neon-bar"></div>
+        ART
+    </div>
+</body>
+</html>
