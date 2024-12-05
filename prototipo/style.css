@@ -1,0 +1,105 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menuBar{
+    width: 100%;
+    background-color: #2b9cf2;
+    overflow: auto;
+    position: fixed;
+}
+
+.menuBar a {
+    float: left;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.menuBar a:hover {
+    color: #0b7c35;
+}
+
+
+@media screen and (max-width: 500px){
+    .menuBar a {
+        float: none;
+        display: block;
+    }
+}
+
+/* estilo do nome das regiões */
+.txt-1 h1{
+    margin-top: 24px;
+    color: #000;
+    font-size: 4.5em;
+    text-align: center;
+    padding: 60px 2%;
+    box-shadow: 0px 3px 0px #000;
+}
+
+.txt2 h3{
+    color: #000;
+    font-weight: 500;
+}
+
+
+.txt3 h3{
+    color: #000;
+    font-weight: 500;
+}
+
+
+
+.txt4 h3{
+    color: #000;
+    font-weight: 500;
+}
+
+
+.txt5 h3{
+    color: #000;
+    font-weight: 500;
+}
+
+
+.txt6 h3{
+    color: #000;
+    font-weight: 500;
+}
+
+
+
+/* FIM */
+
+
+body{
+    background-color:  #ececece8;
+    height: 100bvh;
+}
+
+.regiaof{
+    display: flex;
+    justify-content: center;
+    gap: 0 80px;
+}
+
+.container {
+    padding-left: 24px;
+    padding-right: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-class {
+    border-radius: 20px;
+    width: 30vw;
+}
+
+.subtitle {
+    font-size: 3em;
+    text-align: center;
+}
